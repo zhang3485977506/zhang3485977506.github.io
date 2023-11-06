@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>猜数字游戏</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        input {
+            padding: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 8px 16px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>猜数字游戏----张应胜</h1>
+    <p>我想了一个1到100之间的数字，你猜是多少？</p>
+    <input type="number" id="guessInput">
+    <button onclick="checkGuess()">猜！</button>
+    <p id="result"></p>
+
+    <script>
+        // 生成1到100之间的随机数
+        var randomNumber = Math.floor(Math.random() * 100) + 1;
+        var guessInput = document.getElementById("guessInput");
+        var result = document.getElementById("result");
+
+        function checkGuess() {
+            var guess = parseInt(guessInput.value);
+            if (guess === randomNumber) {
+                result.textContent = "恭喜你，猜对了！";
+                result.style.color = "green";
+                guessInput.disabled = true;
+            } else if (guess < randomNumber) {
+                result.textContent = "猜小了，请再试一次。";
+                result.style.color = "red";
+            } else if (guess > randomNumber) {
+                result.textContent = "猜大了，请再试一次。";
+                result.style.color = "red";
+            }
+            guessInput.value = "";
+            guessInput.focus();
+        }
+    </script>
+</body>
+</html>
